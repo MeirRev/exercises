@@ -1,0 +1,43 @@
+--- a/drivers/Kconfig
++++ b/drivers/Kconfig
+@@ -244,5 +244,9 @@
+ source "drivers/cdx/Kconfig"
+ 
+ source "drivers/dpll/Kconfig"
+-
++config HELLO_MODULE
++	tristate "Hello printk module"
++	depends on m
++	help
++	  Print a message when the module is loaded and unloaded.
+ endmenu
+--- a/drivers/Makefile
++++ b/drivers/Makefile
+@@ -195,3 +195,4 @@
+ obj-$(CONFIG_DPLL)		+= dpll/
+ 
+ obj-$(CONFIG_S390)		+= s390/
++obj-$(CONFIG_HELLO_MODULE) += hello_module.o
+--- /dev/null
++++ b/drivers/hello_module.c
+@@ -0,0 +1,20 @@
++#include <linux/init.h>
++#include <linux/module.h>
++#include <linux/printk.h>
++
++static int __init hello_init(void)
++{
++    printk(KERN_INFO "hello world\n");
++    return 0;
++}
++
++static void __exit hello_exit(void)
++{
++    printk(KERN_INFO "bye bye world\n");
++}
++
++module_init(hello_init);
++module_exit(hello_exit);
++
++MODULE_LICENSE("GPL");
++MODULE_DESCRIPTION("Printk exercise: messages on load and unload");
