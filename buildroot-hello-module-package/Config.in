@@ -1,0 +1,5 @@
+config BR2_PACKAGE_HELLO_MODULE
+	bool "hello-module"
+	depends on BR2_LINUX_KERNEL
+	help
+	  Build the hello printk kernel module.
