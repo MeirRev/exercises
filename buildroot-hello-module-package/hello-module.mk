@@ -1,6 +1,6 @@
-HELLO_MODULE_VERSION = 84940cc05517e95e6d9bd8891c57a1eda6496e24
-HELLO_MODULE_SITE = $(call github,MeirRev,exercises,$(HELLO_MODULE_VERSION))
-HELLO_MODULE_MODULE_SUBDIRS = kernel-module-printk
+HELLO_MODULE_VERSION = dcb516acfaf8aea0be64b1a8c3232680b1823a8b
+HELLO_MODULE_SITE = $(call github,MeirRev,hello-kernel-module,$(HELLO_MODULE_VERSION))
+HELLO_MODULE_MODULE_SUBDIRS = .
 
 $(eval $(kernel-module))
 $(eval $(generic-package))
